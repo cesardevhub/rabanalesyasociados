@@ -1,9 +1,6 @@
 {
 	"name": "rabanales-y-asociados",
 	"version": "0.1.0",
-	"engines": {
-		"node": "26.9.0"
-	},
 	"private": true,
 	"scripts": {
 		"local": "next dev -H 0.0.0.0 -p 3000",
