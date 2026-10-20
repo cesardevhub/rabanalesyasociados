@@ -85,19 +85,29 @@ export default function Header() {
 										key={link.href}
 										className="relative group py-6"
 									>
-										<Link
-											href={link.href}
-											className={`flex items-center gap-1 text-sm font-semibold leading-6 transition-colors ${
-												isActive
-													? "text-accent"
-													: "text-primary hover:text-accent"
-											}`}
-										>
-											{link.name}
-											{link.dropdown && (
-												<ChevronDown className="h-4 w-4 transition-transform group-hover:rotate-180" />
-											)}
-										</Link>
+										{link.dropdown ? (
+											<span
+												className={`flex items-center gap-1 text-sm font-semibold leading-6 transition-colors cursor-default select-none ${
+													isActive
+														? "text-accent"
+														: "text-primary group-hover:text-accent"
+												}`}
+											>
+												{link.name}
+												<ChevronDown className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+											</span>
+										) : (
+											<Link
+												href={link.href}
+												className={`flex items-center gap-1 text-sm font-semibold leading-6 transition-colors ${
+													isActive
+														? "text-accent"
+														: "text-primary hover:text-accent"
+												}`}
+											>
+												{link.name}
+											</Link>
+										)}
 
 										{link.dropdown && (
 											<div className="absolute left-0 top-[100%] w-64 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200">
@@ -201,37 +211,39 @@ export default function Header() {
 											: "hover:bg-white/5"
 									}`}
 								>
-									<Link
-										href={link.href}
-										onClick={
-											link.dropdown
-												? undefined
-												: closeMenu
-										}
-										className={`flex-1 px-4 py-3.5 text-sm sm:text-base font-semibold transition-colors ${
-											isActive
-												? "text-accent"
-												: "text-white/80 hover:text-white"
-										}`}
-									>
-										{link.name}
-									</Link>
-									{link.dropdown && (
+									{link.dropdown ? (
 										<button
+											type="button"
 											onClick={() =>
 												toggleDropdown(link.href)
 											}
-											className="p-3 text-white/40 transition-colors hover:text-white/80"
-											aria-label={`Expandir ${link.name}`}
+											className={`flex flex-1 items-center justify-between px-4 py-3.5 text-sm sm:text-base font-semibold transition-colors text-left ${
+												isActive
+													? "text-accent"
+													: "text-white/80 hover:text-white"
+											}`}
 										>
+											<span>{link.name}</span>
 											<ChevronDown
-												className={`h-4 w-4 transition-transform duration-200 ${
+												className={`h-4 w-4 text-white/50 transition-transform duration-200 ${
 													isExpanded
-														? "rotate-180"
+														? "rotate-180 text-white"
 														: ""
 												}`}
 											/>
 										</button>
+									) : (
+										<Link
+											href={link.href}
+											onClick={closeMenu}
+											className={`flex-1 px-4 py-3.5 text-sm sm:text-base font-semibold transition-colors ${
+												isActive
+													? "text-accent"
+													: "text-white/80 hover:text-white"
+											}`}
+										>
+											{link.name}
+										</Link>
 									)}
 								</div>
 
