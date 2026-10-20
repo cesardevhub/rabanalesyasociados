@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { User } from "lucide-react";
-import Alliances from "@/components/Alliances";
+import InternationalPresence from "@/components/InternationalPresence";
 
 export const metadata: Metadata = {
 	title: "Auditoría y Consultoría Regional",
@@ -201,7 +201,7 @@ export default function Home() {
 				</div>
 			</section>
 
-			<Alliances />
+			<InternationalPresence />
 
 			<section className="py-14 sm:py-24 bg-slate-50">
 				<div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
